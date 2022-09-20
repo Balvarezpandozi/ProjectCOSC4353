@@ -28,6 +28,14 @@ You will extract the core functional and non-functional requirements, and protot
 ### Running Instructions:
 
 ### File Structure:
+> If extension is present, it is a file. Otherwise, folder
+
+- .idea: not sure what these files do for now (UPDATE)
+  - .gitignore(file): to specify files that will not be uploaded to the repository
+- src: All code we write.
+  - main: Application code
+  - test: All tests code
+- target: Holds all output of the build.
 
 ### Technical Details:
 
