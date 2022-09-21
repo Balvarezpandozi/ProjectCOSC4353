@@ -3,7 +3,7 @@ __COSC 4353 - Software Design__
 
 #### Authors:
 - Bryan Alvarez
-- Atharva
+- Atharva Rajurkar
 - Diogo Aires
 
 # SEMESTER PROJECT
@@ -30,7 +30,7 @@ You will extract the core functional and non-functional requirements, and protot
 ### File Structure:
 > If extension is present, it is a file. Otherwise, folder
 
-- .idea: not sure what these files do for now (UPDATE)
+- .idea: this folder stores custom run/debug configurations, git repository mapping and other project specific info.
   - .gitignore(file): to specify files that will not be uploaded to the repository
 - src: All code we write.
   - main: Application code
