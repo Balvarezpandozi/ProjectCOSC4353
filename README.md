@@ -3,7 +3,7 @@ __COSC 4353 - Software Design__
 
 #### Authors:
 - Bryan Alvarez
-- Atharva
+- Atharva Rajurkar
 - Diogo Aires
 
 # SEMESTER PROJECT
