@@ -57,3 +57,8 @@ You will extract the core functional and non-functional requirements, and protot
 
 ### Technical Details:
 
+## Main Functionalities of Wireshark to Analyze for Project 
+- Packet capture -> wireshark listens to a network connection in real time and grabs entire streams of traffic (can be up to thousands of packets)
+- Packet monitor -> displays destination addresses, contents of packet in text  and if applicable destination port.
+- Filtering -> Slices and dices, the sniffed random data using filters to obtain specific data in needed by the user 
+- Visualization -> wireshark allows user to analyze into the very middle of a network packet, entire conversations (messages between server and client), and network streams.
