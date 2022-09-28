@@ -2,8 +2,6 @@ package com.softwaredesign;
 
 public class Main {
     public static void main(String[] args) {
-        
-        
          //String Ipaddress ="2001:db8:a0b:12f0::1";
          String Ipaddress = "42.197.20.45";
 
