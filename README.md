@@ -53,9 +53,9 @@ You will extract the core functional and non-functional requirements, and protot
 #### WIP (Task name, team member(s) working on it)
 
 #### Tasks Done
-- Created repository
-- Added ReadMe file
-- Created tag
+- Created repository, Bryan
+- Added ReadMe file, Bryan
+- Created tag, Atharva
 - Task5: Add junit dependency in pom.xml, Atharva
 - Task1: Add packet capturing library, Bryan
 - Task3: Add basic packet capture functionality, Bryan
