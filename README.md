@@ -38,6 +38,7 @@ You will extract the core functional and non-functional requirements, and protot
 - Task3: Add basic packet capture functionality
 - Task4: Integrate different components on main class
 - Task5: Add junit dependency in pom.xml
+- Task6: ipv4 or ipv6 address checker
 #### Sprint 3: Sep 28, 2022 - Oct 5, 2022
 #### Sprint 4: Oct 5, 2022 - Oct 19, 2022
 #### Sprint 5: Oct 19, 2022 - Nov 2, 2022
@@ -47,14 +48,18 @@ You will extract the core functional and non-functional requirements, and protot
 
 ### Task Backlog
 #### Tasks ToDo
-
+- Task2: Create command line class to handle user input
+- Task4: Integrate different components on main class
 #### WIP (Task name, team member(s) working on it)
 
 #### Tasks Done
 - Created repository
 - Added ReadMe file
 - Created tag
-- Task5: Add junit dependency in pom.xml
+- Task5: Add junit dependency in pom.xml, Atharva
+- Task1: Add packet capturing library, Bryan
+- Task3: Add basic packet capture functionality, Bryan
+- Task6: ipv4 or ipv6 address checker, Diogo
 
 ### Running Instructions:
 
