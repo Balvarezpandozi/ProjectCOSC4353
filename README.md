@@ -37,6 +37,7 @@ You will extract the core functional and non-functional requirements, and protot
 - Task2: Create command line class to handle user input
 - Task3: Add basic packet capture functionality
 - Task4: Integrate different components on main class
+- Task5: Add junit dependency in pom.xml
 #### Sprint 3: Sep 28, 2022 - Oct 5, 2022
 #### Sprint 4: Oct 5, 2022 - Oct 19, 2022
 #### Sprint 5: Oct 19, 2022 - Nov 2, 2022
