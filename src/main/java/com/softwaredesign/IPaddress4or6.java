@@ -1,5 +1,5 @@
 package com.softwaredesign;
-import java.net.*;
+import java.net.*; 
 
 // Checks whether the IP address is IPv4 or IPv6
 //Main drawback for now is DNS check used by InetAddress constructor
