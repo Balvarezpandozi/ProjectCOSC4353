@@ -16,7 +16,7 @@ You will extract the core functional and non-functional requirements, and protot
 
 ### Member sprint instructions
 1. For whatever task you take on, create new branch 
-2. Work on the task 
+2. Update the task backlog and work on the task 
 3. If you need help, ask for it so that the others can jump in and help you out 
 4. When done submit pull request 
 5. Request other members review 
@@ -44,6 +44,18 @@ You will extract the core functional and non-functional requirements, and protot
 #### Sprint 6: Nov 2, 2022 - Nov 16, 2022
 #### Project Presentation: Nov 28, 2022
 
+
+### Task Backlog
+#### Tasks ToDo
+
+#### WIP (Task name, team member(s) working on it)
+
+#### Tasks Done
+- Created repository
+- Added ReadMe file
+- Created tag
+- Task5: Add junit dependency in pom.xml
+
 ### Running Instructions:
 
 ### File Structure:
@@ -60,6 +72,12 @@ You will extract the core functional and non-functional requirements, and protot
 
 ## Main Functionalities of Wireshark to Analyze for Project 
 - Packet capture -> wireshark listens to a network connection in real time and grabs entire streams of traffic (can be up to thousands of packets)
-- Packet monitor -> displays destination addresses, contents of packet in text  and if applicable destination port.
-- Filtering -> Slices and dices, the sniffed random data using filters to obtain specific data in needed by the user 
+- Packet monitor -> displays source and destination addresses, the protocol used, contents of packet in text/encoded format and if applicable destination port.
+- Filtering -> Slices and dices, the sniffed random data using filters to obtain specific data in needed by the user
+  - Filtering can be based on:
+    - ip address
+    - port
+    - protocol
+    - keyword in data packets
 - Visualization -> wireshark allows user to analyze into the very middle of a network packet, entire conversations (messages between server and client), and network streams.
+- Output export -> The packet info can be exported and saved in different file formats like xml, csv or plain text.
