@@ -1,4 +1,2 @@
-/target/
-
-target/classes/com/softwaredesign/NetworkHandler.class
-target/classes/com/softwaredesign/NetworkHandler.class
+/target
+/.vscode
