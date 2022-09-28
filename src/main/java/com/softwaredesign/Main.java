@@ -1,25 +1,14 @@
 package com.softwaredesign;
 
+
+import org.pcap4j.core.NotOpenException;
+import org.pcap4j.core.PcapNativeException;
+import org.pcap4j.core.PcapNetworkInterface;
+
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
-        
-        
-         //String Ipaddress ="2001:db8:a0b:12f0::1";
-         String Ipaddress = "42.197.20.45";
 
-         if(IPaddress4or6.isIPv4(Ipaddress)){
-             System.out.println("The IP address is IPv4");
-         }
-         else if(IPaddress4or6.isIPv6(Ipaddress)){
-             System.out.println("The IP address is IPv6");
-         }
-         else{
-             System.out.println("The IP address is neither IPv4 nor IPv6");
-         }
-
-    }
-
-    public int sum(int a, int b) {
-        return a+b;
     }
 }
