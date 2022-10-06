@@ -21,7 +21,7 @@ public class Main {
                 System.out.println("All devices: " + allDevices);
                 PcapNetworkInterface device = allDevices.get(1);
                 System.out.println("Device: " + device);
-                PcapHandle handle = networkInterfaceHandler.listenForPacketsOnDevice(device, 65536, 10, 10);
+                PcapHandle handle = networkInterfaceHandler.listenForPacketsOnDevice(device);
                 System.out.println("Handle: " + handle);
                 List<Packet> packets = networkInterfaceHandler.getPackets();
                 System.out.println("Packets: " + packets);
