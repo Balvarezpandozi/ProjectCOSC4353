@@ -56,7 +56,7 @@ public class NetworkInterfaceHandler {
 
         try { // Try to capture packets
             handle.loop(maxPackets, listener);
-            //handle.breakLoop();
+            handle.breakLoop();
         } catch (InterruptedException | NotOpenException e) { // If the capture fails, throw an exception
             System.out.println(e);
             e.printStackTrace();
@@ -72,7 +72,7 @@ public class NetworkInterfaceHandler {
      */
     public PcapHandle listenForPacketsOnDevice(PcapNetworkInterface device) throws PcapNativeException, NotOpenException {
         int snapshotLength = 65536; // in bytes
-        int readTimeout = 10; // in milliseconds 
+        int readTimeout = 5; // in milliseconds 
         int maxPackets = 5; // Maximum amount of packets to capture
         return listenForPacketsOnDevice(device, snapshotLength, readTimeout, maxPackets);
     }

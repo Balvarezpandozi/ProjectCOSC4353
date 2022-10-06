@@ -15,7 +15,7 @@ public class Main {
         Scanner kbr = new Scanner(System.in);
         System.out.print("Write a command: ");
         String getPacket= kbr.next();
-        while(getPacket.equals("getPacket")){
+        if(getPacket.equals("getPacket")){
             try{
                 List<PcapNetworkInterface> allDevices = networkInterfaceHandler.getAllDevices();
                 System.out.println("All devices: " + allDevices);
@@ -36,6 +36,7 @@ public class Main {
             for (Packet packet : networkInterfaceHandler.getPackets()) {
                     System.out.println(packet);
                 }
+
             System.out.println("Amount of packets: " + networkInterfaceHandler.getPackets().size());
             
         }
