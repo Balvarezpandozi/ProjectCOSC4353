@@ -1,11 +1,16 @@
 package com.softwaredesign;
-
-import org.pcap4j.core.*;
-import org.pcap4j.core.PcapNetworkInterface.PromiscuousMode;
-import org.pcap4j.packet.Packet;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.pcap4j.core.NotOpenException;
+import org.pcap4j.core.PacketListener;
+import org.pcap4j.core.PcapHandle;
+import org.pcap4j.core.PcapNativeException;
+import org.pcap4j.core.PcapNetworkInterface;
+import org.pcap4j.core.PcapNetworkInterface.PromiscuousMode;
+import org.pcap4j.core.Pcaps;
+import org.pcap4j.packet.Packet;
 
 public class NetworkInterfaceHandler {
     private ArrayList<Packet> packets;
@@ -38,10 +43,10 @@ public class NetworkInterfaceHandler {
      * @throws PcapNativeException
      */
     public PcapHandle listenForPacketsOnDevice(PcapNetworkInterface device, int snapshotLength, int readTimeout, int maxPackets) throws PcapNativeException, NotOpenException {
-        final PcapHandle handle = device.openLive(snapshotLength, PromiscuousMode.PROMISCUOUS, readTimeout);
-        packets = new ArrayList<>();
+        final PcapHandle handle = device.openLive(snapshotLength, PromiscuousMode.PROMISCUOUS, readTimeout); // Open the network interface
+        packets = new ArrayList<>(); // Initialize the packets list
 
-        PacketListener listener = new PacketListener() {
+        PacketListener listener = new PacketListener() { // Create a packet listener
             @Override
             public void gotPacket(Packet packet) {
                 // Override the default gotPacket() function and process packet
@@ -49,9 +54,10 @@ public class NetworkInterfaceHandler {
             }
         };
 
-        try {
+        try { // Try to capture packets
             handle.loop(maxPackets, listener);
-        } catch (InterruptedException | NotOpenException e) {
+            //handle.breakLoop();
+        } catch (InterruptedException | NotOpenException e) { // If the capture fails, throw an exception
             System.out.println(e);
             e.printStackTrace();
         }
@@ -66,8 +72,8 @@ public class NetworkInterfaceHandler {
      */
     public PcapHandle listenForPacketsOnDevice(PcapNetworkInterface device) throws PcapNativeException, NotOpenException {
         int snapshotLength = 65536; // in bytes
-        int readTimeout = 50; // in milliseconds
-        int maxPackets = 50;
+        int readTimeout = 10; // in milliseconds 
+        int maxPackets = 5; // Maximum amount of packets to capture
         return listenForPacketsOnDevice(device, snapshotLength, readTimeout, maxPackets);
     }
 
