@@ -37,7 +37,7 @@ public class NetworkInterfaceHandler {
      * @param maxPackets: Maximum amount of packets to capture from the network interface
      * @throws PcapNativeException
      */
-    public void listenForPacketsOnDevice(PcapNetworkInterface device, int snapshotLength, int readTimeout, int maxPackets) throws PcapNativeException {
+    public PcapHandle listenForPacketsOnDevice(PcapNetworkInterface device, int snapshotLength, int readTimeout, int maxPackets) throws PcapNativeException, NotOpenException {
         final PcapHandle handle = device.openLive(snapshotLength, PromiscuousMode.PROMISCUOUS, readTimeout);
         packets = new ArrayList<>();
 
@@ -56,7 +56,7 @@ public class NetworkInterfaceHandler {
             e.printStackTrace();
         }
 
-        handle.close();
+        return handle;
     }
 
     /**
@@ -64,11 +64,11 @@ public class NetworkInterfaceHandler {
      * @param device
      * @throws PcapNativeException
      */
-    public void listenForPacketsOnDevice(PcapNetworkInterface device) throws PcapNativeException {
+    public PcapHandle listenForPacketsOnDevice(PcapNetworkInterface device) throws PcapNativeException, NotOpenException {
         int snapshotLength = 65536; // in bytes
         int readTimeout = 50; // in milliseconds
         int maxPackets = 50;
-        listenForPacketsOnDevice(device, snapshotLength, readTimeout, maxPackets);
+        return listenForPacketsOnDevice(device, snapshotLength, readTimeout, maxPackets);
     }
 
     /**
