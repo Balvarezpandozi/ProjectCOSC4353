@@ -46,6 +46,7 @@ You will extract the core functional and non-functional requirements, and protot
 - Task4: Integrate different components on main class
 - Task8: Reading packets from pcap file
 - Task9: Add reading packets given an amount of time on a interface
+- Task10: Add junit tests
 #### Sprint 5: Oct 19, 2022 - Nov 2, 2022
 #### Sprint 6: Nov 2, 2022 - Nov 16, 2022
 #### Project Presentation: Nov 28, 2022
@@ -55,9 +56,11 @@ You will extract the core functional and non-functional requirements, and protot
 #### Tasks ToDo
 - Task2: Create command line class to handle user input
 - Task4: Integrate different components on main class
-- Task9: Add reading packets given an amount of time on a interface
+
 #### WIP (Task name, team member(s) working on it)
 - Task8: Reading packets from pcap file, Bryan
+- Task9: Add reading packets given an amount of time on a interface, Atharva
+- Task10: Add junit tests, Atharva
 #### Tasks Done
 - Created repository
 - Added ReadMe file
