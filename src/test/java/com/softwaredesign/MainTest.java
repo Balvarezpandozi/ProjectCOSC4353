@@ -10,6 +10,5 @@ class MainTest {
     void testSum() {
         Main m = new Main();
 
-        Assertions.assertEquals(15,m.sum(6,9));
     }
 }
