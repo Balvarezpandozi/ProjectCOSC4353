@@ -1,9 +1,6 @@
 package com.softwaredesign;
 
-import org.pcap4j.core.NotOpenException;
-import org.pcap4j.core.PcapDumper;
-import org.pcap4j.core.PcapHandle;
-import org.pcap4j.core.PcapNativeException;
+import org.pcap4j.core.*;
 import org.pcap4j.packet.Packet;
 
 import java.util.ArrayList;
@@ -21,5 +18,17 @@ public class PcapFileWriterAndReader {
         }
 
         dumper.close();
+    }
+
+    public ArrayList<Packet> readPacketsFromFile(String fileName) throws PcapNativeException, NotOpenException {
+        PcapHandle handle = Pcaps.openOffline(fileName);
+        Packet packet = handle.getNextPacket();
+        ArrayList<Packet> packets = new ArrayList<>();
+        packets.add(packet);
+        while(packet != null) {
+            packet = handle.getNextPacket();
+            packets.add(packet);
+        }
+        return packets;
     }
 }
