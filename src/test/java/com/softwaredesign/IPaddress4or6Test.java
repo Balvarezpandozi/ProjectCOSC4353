@@ -3,7 +3,7 @@ package com.softwaredesign;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-class IPaddress4or6Test {
+public class IPaddress4or6Test {
 
     @Test
     void testIfAddressIsIPv4() {

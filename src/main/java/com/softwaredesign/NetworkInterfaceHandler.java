@@ -49,12 +49,15 @@ public class NetworkInterfaceHandler {
             }
         };
 
-        try {
-            handle.loop(maxPackets, listener);
-        } catch (InterruptedException | NotOpenException e) {
-            System.out.println(e);
-            e.printStackTrace();
-        }
+        Thread packetLoop = new Thread(() -> {
+            try {
+                handle.loop(maxPackets, listener);
+            } catch (Exception e) {
+                System.out.println(e.getClass());
+            }
+        });
+
+        packetLoop.start();
 
         return handle;
     }
@@ -69,17 +72,6 @@ public class NetworkInterfaceHandler {
         int readTimeout = 50; // in milliseconds
         int maxPackets = 50;
         return listenForPacketsOnDevice(device, snapshotLength, readTimeout, maxPackets);
-    }
-
-    /**
-     * Prints all packets on the packets list
-     */
-    public void printAllPackets() {
-        for (Packet packet: packets) {
-            System.out.println("=====================================");
-            System.out.println(packet);
-            System.out.println("=====================================");
-        }
     }
 
     /**

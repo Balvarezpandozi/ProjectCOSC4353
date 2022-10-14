@@ -6,8 +6,8 @@ import org.pcap4j.packet.Packet;
 import java.util.ArrayList;
 
 public class PcapFileWriterAndReader {
-    public void writePacketsToFile(String fileName, ArrayList<Packet> packets, PcapHandle handle) throws NotOpenException, PcapNativeException {
-        PcapDumper dumper = handle.dumpOpen(fileName + ".pcap");
+    public void writePacketsToFile(String filePath, String fileName, ArrayList<Packet> packets, PcapHandle handle) throws NotOpenException, PcapNativeException {
+        PcapDumper dumper = handle.dumpOpen(filePath + fileName + ".pcap");
 
         for (Packet packet: packets) {
             try {
