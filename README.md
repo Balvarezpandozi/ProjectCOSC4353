@@ -60,7 +60,7 @@ You will extract the core functional and non-functional requirements, and protot
 #### WIP (Task name, team member(s) working on it)
 - Task9: Add reading packets given an amount of time on an interface, Atharva
 - Task10: Add junit tests, Atharva
-- Task2: Create command line class to handle user input
+- Task2: Create command line class to handle user input, Diogo
 #### Tasks Done
 - Created repository
 - Added ReadMe file
