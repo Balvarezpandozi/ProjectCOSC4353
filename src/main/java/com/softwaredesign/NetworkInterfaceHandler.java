@@ -3,12 +3,14 @@ package com.softwaredesign;
 import org.pcap4j.core.*;
 import org.pcap4j.core.PcapNetworkInterface.PromiscuousMode;
 import org.pcap4j.packet.Packet;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class NetworkInterfaceHandler {
     private ArrayList<Packet> packets;
+    private Integer INFINITY = -1;
 
     /**
      * getAllDevices finds all network interfaces and returns them in a list
@@ -41,12 +43,14 @@ public class NetworkInterfaceHandler {
         final PcapHandle handle = device.openLive(snapshotLength, PromiscuousMode.PROMISCUOUS, readTimeout);
         packets = new ArrayList<>();
 
-        PacketListener listener = new PacketListener() {
-            @Override
-            public void gotPacket(Packet packet) {
-                // Override the default gotPacket() function and process packet
-                packets.add(packet);
-            }
+        PacketListener listener = packet -> {
+            packets.add(packet);
+
+            System.out.println("=====================================");
+            System.out.println("isPacketIPv4: " + IPaddress4or6.isPacketUsingIPv4(packet));
+            System.out.println("isPacketIPv6: " + IPaddress4or6.isPacketUsingIPv6(packet));
+            System.out.println(packet);
+            System.out.println("=====================================");
         };
 
         Thread packetLoop = new Thread(() -> {
@@ -71,6 +75,17 @@ public class NetworkInterfaceHandler {
         int snapshotLength = 65536; // in bytes
         int readTimeout = 50; // in milliseconds
         int maxPackets = 50;
+        return listenForPacketsOnDevice(device, snapshotLength, readTimeout, maxPackets);
+    }
+
+    /**
+     * This function allows overloading for the previous listenForPacketsOnDevice function with max packets limit set to INFINITY. Sets up default parameters.
+     * @param device
+     * @throws PcapNativeException
+     */
+    public PcapHandle listenForPacketsOnDevice(PcapNetworkInterface device, int readTimeout) throws PcapNativeException, NotOpenException {
+        int snapshotLength = 65536; // in bytes
+        int maxPackets = INFINITY;
         return listenForPacketsOnDevice(device, snapshotLength, readTimeout, maxPackets);
     }
 

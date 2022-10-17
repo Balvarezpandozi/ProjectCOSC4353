@@ -1,5 +1,10 @@
 package com.softwaredesign;
-import java.net.*; 
+import org.pcap4j.packet.IpV4Packet;
+import org.pcap4j.packet.IpV6Packet;
+import org.pcap4j.packet.Packet;
+
+import java.net.*;
+import java.util.Objects;
 
 // Checks whether the IP address is IPv4 or IPv6
 //Main drawback for now is DNS check used by InetAddress constructor
@@ -29,6 +34,20 @@ public class IPaddress4or6 {
             isIPv6 = false;
         }
         return isIPv6;
+    }
+
+    public static boolean isPacketUsingIPv4(Packet packet){
+        if(Objects.isNull(packet.get(IpV4Packet.class))){
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean isPacketUsingIPv6(Packet packet){
+        if(Objects.isNull(packet.get(IpV6Packet.class))){
+            return false;
+        }
+        return true;
     }
     
 }
