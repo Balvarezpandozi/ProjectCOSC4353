@@ -1,5 +1,6 @@
 package com.softwaredesign;
 
+import org.apache.commons.lang3.time.StopWatch;
 import org.pcap4j.core.*;
 import org.pcap4j.core.PcapNetworkInterface.PromiscuousMode;
 import org.pcap4j.packet.Packet;
@@ -7,6 +8,8 @@ import org.pcap4j.packet.Packet;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import static java.lang.Thread.sleep;
 
 public class NetworkInterfaceHandler {
     private ArrayList<Packet> packets;
@@ -94,5 +97,17 @@ public class NetworkInterfaceHandler {
      */
     public ArrayList<Packet> getPackets() {
         return packets;
+    }
+
+    public void sniff(int deviceIndex, int timeLimit) throws IOException, PcapNativeException, NotOpenException, InterruptedException {
+        PcapNetworkInterface device = getAllDevices().get(deviceIndex);
+        StopWatch stopwatch = new StopWatch();
+        stopwatch.start();
+        PcapHandle handle = listenForPacketsOnDevice(device,timeLimit);
+        sleep(timeLimit);
+        handle.breakLoop();
+        handle.close();
+        stopwatch.stop();
+        System.out.println("Time Elapsed: " + stopwatch.getTime());
     }
 }
