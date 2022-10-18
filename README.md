@@ -56,12 +56,11 @@ You will extract the core functional and non-functional requirements, and protot
 
 ### Task Backlog
 #### Tasks ToDo
-- Task2: Create command line class to handle user input
 - Task4: Integrate different components on main class
-- Task11: Set up general test class to implement samples and calling all tests in one class
 
 #### WIP (Task name, team member(s) working on it)
 - Task10: Add junit tests, Atharva
+- Task2: Create command line class to handle user input, Diogo
 - Task12: Add support for filtering packets, Atharva
 #### Tasks Done
 - Created repository
@@ -74,6 +73,7 @@ You will extract the core functional and non-functional requirements, and protot
 - Task7: Writing packets into a file, Bryan
 - Task8: Reading packets from pcap file, Bryan
 - Task9: Add reading packets given an amount of time on an interface, Atharva
+- Task11: Set up general test class to implement samples and calling all tests in one class, Bryan
 ### Running Instructions:
 
 ### File Structure:
