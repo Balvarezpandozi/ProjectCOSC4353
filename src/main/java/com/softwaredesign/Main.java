@@ -32,7 +32,7 @@ public class Main {
                     System.out.println(e.getMessage());
                 }
             } else if(input.equals("-n listen")){
-                // Listen for packets on a network interface
+                // Listen for packets on a specific network interface assigned by user
                 System.out.println("Please enter the network interface you want to listen to: ");
                 int deviceNum = scanner.nextInt();
                 System.out.println("Please enter the snapshot length: ");
