@@ -42,7 +42,7 @@ You will extract the core functional and non-functional requirements, and protot
 #### Sprint 3: Sep 28, 2022 - Oct 5, 2022
 - Task7: Writing packets into a file
 #### Sprint 4: Oct 5, 2022 - Oct 19, 2022
-- Task2: Create command line class to handle user input
+- Task2: Create command line class to handle user input 
 - Task4: Integrate different components on main class
 - Task8: Reading packets from pcap file
 - Task9: Add reading packets given an amount of time on an interface
@@ -56,11 +56,14 @@ You will extract the core functional and non-functional requirements, and protot
 ### Task Backlog
 #### Tasks ToDo
 - Task4: Integrate different components on main class
+- Task12: add getting network interfaces connected to a certain network
+- Task13: add filtering of packets by protocol
 
 #### WIP (Task name, team member(s) working on it)
 - Task9: Add reading packets given an amount of time on an interface, Atharva
 - Task10: Add junit tests, Atharva
-- Task2: Create command line class to handle user input, Diogo
+- Task2: Create command line class to handle user input, Diogo 
+- Task12: add getting network interfaces connected to a certain network, Diogo and Bryan
 #### Tasks Done
 - Created repository
 - Added ReadMe file
