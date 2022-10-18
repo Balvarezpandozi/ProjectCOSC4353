@@ -49,6 +49,7 @@ You will extract the core functional and non-functional requirements, and protot
 - Task10: Add junit tests
 - Task11: Set up general test class to implement samples and calling all tests in one class
 #### Sprint 5: Oct 19, 2022 - Nov 2, 2022
+- Task12: add getting network interfaces connected to a certain network, Diogo and Bryan
 #### Sprint 6: Nov 2, 2022 - Nov 16, 2022
 #### Project Presentation: Nov 28, 2022
 
@@ -75,7 +76,7 @@ You will extract the core functional and non-functional requirements, and protot
 - Task7: Writing packets into a file, Bryan
 - Task8: Reading packets from pcap file, Bryan
 - Task11: Set up general test class to implement samples and calling all tests in one class, Bryan
-
+- Task2: Create command line class to handle user input, Diogo
 ### Running Instructions:
 
 ### File Structure:
