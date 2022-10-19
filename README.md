@@ -50,6 +50,7 @@ You will extract the core functional and non-functional requirements, and protot
 - Task11: Set up general test class to implement samples and calling all tests in one class
 #### Sprint 5: Oct 19, 2022 - Nov 2, 2022
 - Task12: add getting network interfaces connected to a certain network, Diogo and Bryan
+- Task14: Add support for filtering packets
 #### Sprint 6: Nov 2, 2022 - Nov 16, 2022
 #### Project Presentation: Nov 28, 2022
 
@@ -61,7 +62,6 @@ You will extract the core functional and non-functional requirements, and protot
 - Task13: add filtering of packets by protocol
 
 #### WIP (Task name, team member(s) working on it)
-- Task9: Add reading packets given an amount of time on an interface, Atharva
 - Task10: Add junit tests, Atharva
 - Task2: Create command line class to handle user input, Diogo 
 - Task12: add getting network interfaces connected to a certain network, Diogo and Bryan
@@ -75,6 +75,7 @@ You will extract the core functional and non-functional requirements, and protot
 - Task6: ipv4 or ipv6 address checker, Diogo
 - Task7: Writing packets into a file, Bryan
 - Task8: Reading packets from pcap file, Bryan
+- Task9: Add reading packets given an amount of time on an interface, Atharva
 - Task11: Set up general test class to implement samples and calling all tests in one class, Bryan
 - Task2: Create command line class to handle user input, Diogo
 ### Running Instructions:

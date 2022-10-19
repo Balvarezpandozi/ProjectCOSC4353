@@ -68,9 +68,9 @@ public class Main {
             }
             System.out.print("type the new command you want to execute, to terminate program type 'exit': ");
             input = scanner.nextLine();
-            
+
            }
-           
+
         }
     }
 
