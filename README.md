@@ -57,18 +57,16 @@ You will extract the core functional and non-functional requirements, and protot
 
 ### Task Backlog
 #### Tasks ToDo
-- Task4: Integrate different components on main class
-- Task12: add getting network interfaces connected to a certain network
-- Task13: add filtering of packets by protocol
-
+- Task15: Determine next commands to add.
 #### WIP (Task name, team member(s) working on it)
-- Task10: Add junit tests, Atharva
 - Task2: Create command line class to handle user input, Diogo 
 - Task12: add getting network interfaces connected to a certain network, Diogo and Bryan
+- Task13: add filtering of packets by protocol, Atharva
 #### Tasks Done
 - Created repository
 - Added ReadMe file
 - Created tag
+- Task4: Integrate different components on main class (eliminated redundant task)
 - Task5: Add junit dependency in pom.xml, Atharva
 - Task1: Add packet capturing library, Bryan
 - Task3: Add basic packet capture functionality, Bryan
@@ -78,6 +76,7 @@ You will extract the core functional and non-functional requirements, and protot
 - Task9: Add reading packets given an amount of time on an interface, Atharva
 - Task11: Set up general test class to implement samples and calling all tests in one class, Bryan
 - Task2: Create command line class to handle user input, Diogo
+- Task10: Add junit tests, Atharva
 ### Running Instructions:
 
 ### File Structure:
