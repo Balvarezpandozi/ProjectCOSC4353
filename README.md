@@ -58,8 +58,7 @@ You will extract the core functional and non-functional requirements, and protot
 ### Task Backlog
 #### Tasks ToDo
 - Task15: Determine next commands to add.
-#### WIP (Task name, team member(s) working on it)
-- Task2: Create command line class to handle user input, Diogo 
+#### WIP (Task name, team member(s) working on it) 
 - Task12: add getting network interfaces connected to a certain network, Diogo and Bryan
 - Task13: add filtering of packets by protocol, Atharva
 #### Tasks Done
