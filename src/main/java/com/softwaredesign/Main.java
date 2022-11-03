@@ -14,6 +14,7 @@ public class Main {
         System.out.println("This program will analyze the network traffic on your computer and display the results.");
         System.out.println("To know the commands for the functionalities the project offers, type 'help'");
         System.out.println("To exit the program, type 'exit'");
+        System.out.println();
         System.out.print("type the command you want to execute: ");
 
         Scanner scanner = new Scanner(System.in);
@@ -27,6 +28,7 @@ public class Main {
                 try {
                     allDevices = networkInterfaceHandler.getAllDevices();
                     System.out.println("All devices: " + allDevices);
+                    System.out.println();
                     System.out.println("Device: " + allDevices);
                 } catch (IOException e) {
                     System.out.println(e.getMessage());
@@ -63,6 +65,9 @@ public class Main {
                 for (Packet packet : networkInterfaceHandler.getPackets()) {
                     System.out.println(packet);
                 }
+            } else if(input.equals("-g hosts")){
+                // Get all hosts
+                getHostsAddy.getNetworkDevices();
            }else{
                 System.out.println("Invalid command. Type 'help' to see the commands.");
             }
