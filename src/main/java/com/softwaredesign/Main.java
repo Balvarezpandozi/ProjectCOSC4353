@@ -19,7 +19,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
         // Create a new network interface handler
-        NetworkInterfaceHandler networkInterfaceHandler = new NetworkInterfaceHandler();
+        NetworkInterfaceHandler networkInterfaceHandler = NetworkInterfaceHandler.getInstance();
         while(!input.equals("exit")){
             if(input.equals("-n get")){
                 // Get all network interfaces

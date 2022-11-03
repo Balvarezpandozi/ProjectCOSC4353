@@ -8,12 +8,25 @@ import org.pcap4j.packet.Packet;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static java.lang.Thread.sleep;
 
 public class NetworkInterfaceHandler {
     private ArrayList<Packet> packets;
     private Integer INFINITY = -1;
+    private static NetworkInterfaceHandler singletonInstance = null;
+
+    private NetworkInterfaceHandler(){};
+    /**
+     * makes NetworkInterfaceHandler singleton
+     */
+    public static NetworkInterfaceHandler getInstance(){
+        if (Objects.isNull(singletonInstance)) {
+            singletonInstance = new NetworkInterfaceHandler();
+        }
+        return singletonInstance;
+    }
 
     /**
      * getAllDevices finds all network interfaces and returns them in a list

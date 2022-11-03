@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class NetworkInterfaceHandlerTest implements Samples {
 
-    final NetworkInterfaceHandler networkInterfaceHandler = new NetworkInterfaceHandler();
+    final NetworkInterfaceHandler networkInterfaceHandler = NetworkInterfaceHandler.getInstance();
 
     @Test
     void testGetAllDevicesToRetrieveAtLeastOneDevice() throws IOException {
