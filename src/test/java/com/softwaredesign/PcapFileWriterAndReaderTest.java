@@ -1,27 +1,23 @@
 package com.softwaredesign;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.pcap4j.core.*;
-import org.pcap4j.packet.EthernetPacket;
+import org.pcap4j.core.NotOpenException;
+import org.pcap4j.core.PcapHandle;
+import org.pcap4j.core.PcapNativeException;
+import org.pcap4j.core.PcapNetworkInterface;
 import org.pcap4j.packet.Packet;
-import org.pcap4j.packet.namednumber.EtherType;
-import org.pcap4j.util.MacAddress;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class PcapFileWriterAndReaderTest implements Samples{
 
-    final NetworkInterfaceHandler networkInterfaceHandler = new NetworkInterfaceHandler();
+    final NetworkInterfaceHandler networkInterfaceHandler = NetworkInterfaceHandler.getInstance();
     final PcapFileWriterAndReader pcapFileWriterAndReader = new PcapFileWriterAndReader();
 
     @Test
