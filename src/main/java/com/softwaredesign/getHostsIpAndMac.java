@@ -8,8 +8,11 @@ import java.net.Socket;
 import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 import java.util.List;
-public class getHostsAddy {
-    private static int port = 80;
+//gets the Ip Address of the host computer and the MAC address of that computer 
+//protocol for mapping an Ip address to a physical MAC address on a local network
+//Every computer is assigned an IP address and some local server's IP adresses a
+public class getHostsIpAndMac { 
+    private static int port = 8080;
 
     public static void main(String[] args) {
         getNetworkDevices();
@@ -57,8 +60,8 @@ public class getHostsAddy {
             try {
                 for (int i = 0; i < ipList.size(); i++) {
                     ip = (String) ipList.get(i);
-                    socket.connect(new InetSocketAddress(ip, port), 100);
-                    System.out.println("Found socket for: " + ip);
+                    socket.connect(new InetSocketAddress(ip, port), 100); // Connect to the socket
+                    System.out.println("Found socket for: " + ip); // Display the IP address of the device
                     socket.close();
                 }
             } catch (ConnectException | SocketTimeoutException ex) {

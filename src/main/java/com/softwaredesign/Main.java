@@ -65,9 +65,10 @@ public class Main {
                 for (Packet packet : networkInterfaceHandler.getPackets()) {
                     System.out.println(packet);
                 }
-            } else if(input.equals("-g hosts")){
-                // Get IP from hosts that local host has communicated with
-                getHostsAddy.getNetworkDevices();
+            } else if(input.equals("-h ping")){
+                // ping host to get IP address and Mac address
+                getHostsIpAndMac.getNetworkDevices();
+                
            }else{
                 System.out.println("Invalid command. Type 'help' to see the commands.");
             }
