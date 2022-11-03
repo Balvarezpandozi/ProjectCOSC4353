@@ -66,7 +66,7 @@ public class Main {
                     System.out.println(packet);
                 }
             } else if(input.equals("-g hosts")){
-                // Get all hosts
+                // Get IP from hosts that local host has communicated with
                 getHostsAddy.getNetworkDevices();
            }else{
                 System.out.println("Invalid command. Type 'help' to see the commands.");
