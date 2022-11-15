@@ -1,0 +1,16 @@
+help command accessed: 
+	This command provides functionalities commands and what each functionality does.
+
+-> "-n get -s local" 
+	Gets all network interfaces from local device where this program is running on.
+
+->  "n- listen" 
+	Listens to all packets from a selected network interface for a specific:
+		Snapshot lenght
+		Read timeout
+		Maximum amount of pactures users wants to capture.
+
+-> "-p filter"
+	Filters packet information based on PCAP file that can be read from.
+
+
