@@ -73,7 +73,7 @@ public class Main {
                 for (Packet packet : networkInterfaceHandler.getPackets()) {
                     System.out.println(packet);
                 }
-            } else if(input.equals("-h ping")){
+            }else if(input.equals("-h ping")){
                 // ping host to get IP address and Mac address
                 getHostsIpAndMac.getNetworkDevices();
                 

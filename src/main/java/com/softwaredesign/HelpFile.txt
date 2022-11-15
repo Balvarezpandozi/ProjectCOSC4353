@@ -10,6 +10,10 @@ help command accessed:
 		Read timeout
 		Maximum amount of pactures users wants to capture.
 
+-> "-h ping"
+	Pings Host to get IP address of host and router; However main functionality is for user to use
+	arp command and get MAC address of host device.
+
 -> "-p filter"
 	Filters packet information based on PCAP file that can be read from.
 
