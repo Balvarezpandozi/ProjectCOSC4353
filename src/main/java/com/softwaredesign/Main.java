@@ -10,7 +10,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         try{
-            File file = new File("C:\\Users\\diogo\\OneDrive\\Desktop\\SoftwareDesign\\ProjectCOSC4353\\src\\main\\java\\com\\softwaredesign\\WelcomeFile.txt");
+            File file = new File("WelcomeFile.txt");
             Scanner fileReader = new Scanner(file);
             while(fileReader.hasNextLine()){
                 String data = fileReader.nextLine();
@@ -79,7 +79,7 @@ public class Main {
                 
            }else if(input.equals("help")){
                 try{
-                    File file = new File("C:\\Users\\diogo\\OneDrive\\Desktop\\SoftwareDesign\\ProjectCOSC4353\\src\\main\\java\\com\\softwaredesign\\HelpFile.txt");
+                    File file = new File("HelpFile.txt");
                     Scanner fileReader = new Scanner(file);
                     while(fileReader.hasNextLine()){
                         String data = fileReader.nextLine();
