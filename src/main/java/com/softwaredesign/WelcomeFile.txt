@@ -1,0 +1,6 @@
+Welcome to the network analyzer!
+This project was developed by Diogo Aires, Bryan Alvarez and Atharva Rajukar.
+This program will analyze network traffic of your local device and display results such as packet information,
+IP addresses, MAC addresses among other functionalities.
+To know the commands for each provided functionality, type 'help'.
+To exit program, type 'exit'.

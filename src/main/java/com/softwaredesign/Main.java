@@ -8,25 +8,35 @@ import java.io.*;
 
 public class Main {
     public static void main(String[] args) {
-
-        System.out.println("Welcome to the network analyzer!");
-        System.out.println("Project was created by Diogo Aires, Atharva Rajurkar, Bryan Alvarez.");
-        System.out.println("This program will analyze the network traffic on your computer and display the results.");
-        System.out.println("To know the commands for the functionalities the project offers, type 'help'");
-        System.out.println("To exit the program, type 'exit'");
+        Scanner scanner = new Scanner(System.in);
+        try{
+            File file = new File("WelcomeFile.txt");
+            Scanner fileReader = new Scanner(file);
+            while(fileReader.hasNextLine()){
+                String data = fileReader.nextLine();
+                System.out.println(data);
+            }
+            fileReader.close();
+        }catch(FileNotFoundException e){
+            System.out.println("Program is not working!");
+            e.printStackTrace();
+            System.exit(0);
+        }
+        
         System.out.print("type the command you want to execute: ");
 
-        Scanner scanner = new Scanner(System.in);
+       
         String input = scanner.nextLine();
         // Create a new network interface handler
         NetworkInterfaceHandler networkInterfaceHandler = NetworkInterfaceHandler.getInstance();
         while(!input.equals("exit")){
-            if(input.equals("-n get")){
+            if(input.equals("-n get -s local")){
                 // Get all network interfaces
                 List<PcapNetworkInterface> allDevices = null;
                 try {
                     allDevices = networkInterfaceHandler.getAllDevices();
                     System.out.println("All devices: " + allDevices);
+                    System.out.println();
                     System.out.println("Device: " + allDevices);
                 } catch (IOException e) {
                     System.out.println(e.getMessage());
@@ -63,7 +73,26 @@ public class Main {
                 for (Packet packet : networkInterfaceHandler.getPackets()) {
                     System.out.println(packet);
                 }
-           }else{
+            }else if(input.equals("-h ping")){
+                // ping host to get IP address and Mac address
+                getHostsIpAndMac.getNetworkDevices();
+                
+           }else if(input.equals("help")){
+                try{
+                    File file = new File("HelpFile.txt");
+                    Scanner fileReader = new Scanner(file);
+                    while(fileReader.hasNextLine()){
+                        String data = fileReader.nextLine();
+                        System.out.println(data);
+                    }
+                    fileReader.close();
+                }
+                catch(FileNotFoundException e){
+                    System.out.println("command not found");
+                    e.printStackTrace();
+                    
+                }
+            }else{
                 System.out.println("Invalid command. Type 'help' to see the commands.");
             }
             System.out.print("type the new command you want to execute, to terminate program type 'exit': ");
