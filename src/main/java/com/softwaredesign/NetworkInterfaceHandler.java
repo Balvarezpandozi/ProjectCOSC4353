@@ -75,9 +75,9 @@ public class NetworkInterfaceHandler {
      * @throws PcapNativeException
      */
     public PcapHandle listenForPacketsOnDevice(PcapNetworkInterface device) throws PcapNativeException, NotOpenException {
-        int snapshotLength = (Integer) null; // in bytes
-        int readTimeout = (Integer) null; // in milliseconds
-        int maxPackets = (Integer) null;
+        int snapshotLength = 65536; // in bytes
+        int readTimeout = 50; // in milliseconds
+        int maxPackets = 50;
         return listenForPacketsOnDevice(device, snapshotLength, readTimeout, maxPackets);
     }
 
