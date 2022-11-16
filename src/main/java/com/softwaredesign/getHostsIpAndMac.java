@@ -27,6 +27,7 @@ public class getHostsIpAndMac {
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream())); // Create a new buffered reader to read the output of the process
 
             String ip = null;
+            @SuppressWarnings("rawtypes")
             List ipList = new ArrayList<>(); // List<> Array to hold dynamic IP Addresses
             while ((ip = reader.readLine()) != null) { // While the reader is not null
                 ip = ip.trim();     // Trim the data
@@ -45,7 +46,7 @@ public class getHostsIpAndMac {
                         // then add the IP address on that line to the 
                         // List<> Array...
                         if (dataArray[2].equalsIgnoreCase("dynamic")) {
-                            ipList.add(dataArray[0]);
+                            ipList.add(dataArray[0]);// Add the IP Address to the List<> Array
                             // For console output display only...
                             System.out.println("Device Located On IP: " + dataArray[0]);// Display the IP address in this case is default gate way 
                         }
@@ -60,7 +61,8 @@ public class getHostsIpAndMac {
             try {
                 for (int i = 0; i < ipList.size(); i++) {
                     ip = (String) ipList.get(i);
-                    socket.connect(new InetSocketAddress(ip, port), 100); // Connect to the socket
+                    socket.connect(new InetSocketAddress(ip, port), 2000); // Connect to the socket
+                    System.out.println("Connected to: " + ip); // Display the IP address of the connected device
                     System.out.println("Found socket for: " + ip); // Display the IP address of the device
                     socket.close();
                 }
