@@ -62,7 +62,7 @@ public class getHostsIpAndMac {
             try {
                 for (int i = 0; i < ipList.size(); i++) {
                     // Try to connect to the socket
-                    socket.connect(new InetSocketAddress((String) ipList.get(i), port), 1000);
+                    socket.connect(new InetSocketAddress((String) ipList.get(i), port), 5000);
                     // If the connection is successful, then display the IP Address
                     System.out.println("Device Connected On IP: " + ipList.get(i));
                     // Close the socket
