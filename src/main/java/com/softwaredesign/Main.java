@@ -9,8 +9,9 @@ import java.io.*;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        String dir = System.getProperty("user.dir") + "\\src\\main\\java\\com\\softwaredesign\\";
         try{
-            File file = new File("WelcomeFile.txt");
+            File file = new File(dir + "WelcomeFile.txt");
             Scanner fileReader = new Scanner(file);
             while(fileReader.hasNextLine()){
                 String data = fileReader.nextLine();
@@ -79,7 +80,7 @@ public class Main {
                 
            }else if(input.equals("help")){
                 try{
-                    File file = new File("HelpFile.txt");
+                    File file = new File(dir + "HelpFile.txt");
                     Scanner fileReader = new Scanner(file);
                     while(fileReader.hasNextLine()){
                         String data = fileReader.nextLine();
