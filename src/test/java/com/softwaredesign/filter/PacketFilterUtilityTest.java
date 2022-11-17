@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 class PacketFilterUtilityTest {
@@ -60,8 +62,11 @@ class PacketFilterUtilityTest {
 
     @Test
     void testCreateFilter_ip6() {
-        String input = "y\rip6\r";
-        InputStream in = new ByteArrayInputStream(input.getBytes());
+        List<String> inputs = new ArrayList<>();
+        inputs.add("y");
+        inputs.add("ip6");
+        String inputStream = String. join("\r", inputs);
+        InputStream in = new ByteArrayInputStream(inputStream.getBytes());
         System.setIn(in);
         packetFilterUtility = new PacketFilterUtility(new Scanner(System.in));
         String filter = packetFilterUtility.createFilter();
@@ -71,8 +76,11 @@ class PacketFilterUtilityTest {
 
     @Test
     void testCreateFilter_ip4() {
-        String input = "y\rip\r";
-        InputStream in = new ByteArrayInputStream(input.getBytes());
+        List<String> inputs = new ArrayList<>();
+        inputs.add("y");
+        inputs.add("ip");
+        String inputStream = String. join("\r", inputs);
+        InputStream in = new ByteArrayInputStream(inputStream.getBytes());
         System.setIn(in);
         packetFilterUtility = new PacketFilterUtility(new Scanner(System.in));
         String filter = packetFilterUtility.createFilter();
@@ -82,8 +90,16 @@ class PacketFilterUtilityTest {
 
     @Test
     void testCreateFilter_Protocol_Dir_Host() {
-        String input = "n\ry\rtcp\ry\rsrc\ry\r10.101.160.90\r";
-        InputStream in = new ByteArrayInputStream(input.getBytes());
+        List<String> inputs = new ArrayList<>();
+        inputs.add("n");
+        inputs.add("y");
+        inputs.add("tcp");
+        inputs.add("y");
+        inputs.add("src");
+        inputs.add("y");
+        inputs.add("10.101.160.90");
+        String inputStream = String. join("\r", inputs);
+        InputStream in = new ByteArrayInputStream(inputStream.getBytes());
         System.setIn(in);
         packetFilterUtility = new PacketFilterUtility(new Scanner(System.in));
         String filter = packetFilterUtility.createFilter();
@@ -94,7 +110,15 @@ class PacketFilterUtilityTest {
     @Test
     void testCreateFilter_NoProtocol_Dir_Host() {
         String input = "n\rn\ry\rsrc\ry\r10.101.160.90\r";
-        InputStream in = new ByteArrayInputStream(input.getBytes());
+        List<String> inputs = new ArrayList<>();
+        inputs.add("n");
+        inputs.add("n");
+        inputs.add("y");
+        inputs.add("src");
+        inputs.add("y");
+        inputs.add("10.101.160.90");
+        String inputStream = String. join("\r", inputs);
+        InputStream in = new ByteArrayInputStream(inputStream.getBytes());
         System.setIn(in);
         packetFilterUtility = new PacketFilterUtility(new Scanner(System.in));
         String filter = packetFilterUtility.createFilter();
@@ -104,8 +128,15 @@ class PacketFilterUtilityTest {
 
     @Test
     void testCreateFilter_Protocol_NoDir_Host() {
-        String input = "n\ry\rtcp\rn\ry\r10.101.160.90\r";
-        InputStream in = new ByteArrayInputStream(input.getBytes());
+        List<String> inputs = new ArrayList<>();
+        inputs.add("n");
+        inputs.add("y");
+        inputs.add("tcp");
+        inputs.add("n");
+        inputs.add("y");
+        inputs.add("10.101.160.90");
+        String inputStream = String. join("\r", inputs);
+        InputStream in = new ByteArrayInputStream(inputStream.getBytes());
         System.setIn(in);
         packetFilterUtility = new PacketFilterUtility(new Scanner(System.in));
         String filter = packetFilterUtility.createFilter();
@@ -115,8 +146,14 @@ class PacketFilterUtilityTest {
 
     @Test
     void testCreateFilter_NoProtocol_NoDir_Host() {
-        String input = "n\rn\rn\ry\r10.101.160.90\r";
-        InputStream in = new ByteArrayInputStream(input.getBytes());
+        List<String> inputs = new ArrayList<>();
+        inputs.add("n");
+        inputs.add("n");
+        inputs.add("n");
+        inputs.add("y");
+        inputs.add("10.101.160.90");
+        String inputStream = String. join("\r", inputs);
+        InputStream in = new ByteArrayInputStream(inputStream.getBytes());
         System.setIn(in);
         packetFilterUtility = new PacketFilterUtility(new Scanner(System.in));
         String filter = packetFilterUtility.createFilter();
@@ -126,8 +163,17 @@ class PacketFilterUtilityTest {
 
     @Test
     void testCreateFilter_Protocol_Dir_Port() {
-        String input = "n\ry\rtcp\ry\rsrc\rn\ry\r8010\r";
-        InputStream in = new ByteArrayInputStream(input.getBytes());
+        List<String> inputs = new ArrayList<>();
+        inputs.add("n");
+        inputs.add("y");
+        inputs.add("tcp");
+        inputs.add("y");
+        inputs.add("src");
+        inputs.add("n");
+        inputs.add("y");
+        inputs.add("8010");
+        String inputStream = String. join("\r", inputs);
+        InputStream in = new ByteArrayInputStream(inputStream.getBytes());
         System.setIn(in);
         packetFilterUtility = new PacketFilterUtility(new Scanner(System.in));
         String filter = packetFilterUtility.createFilter();
@@ -137,8 +183,16 @@ class PacketFilterUtilityTest {
 
     @Test
     void testCreateFilter_NoProtocol_Dir_Port() {
-        String input = "n\rn\ry\rsrc\rn\ry\r8010\r";
-        InputStream in = new ByteArrayInputStream(input.getBytes());
+        List<String> inputs = new ArrayList<>();
+        inputs.add("n");
+        inputs.add("n");
+        inputs.add("y");
+        inputs.add("src");
+        inputs.add("n");
+        inputs.add("y");
+        inputs.add("8010");
+        String inputStream = String. join("\r", inputs);
+        InputStream in = new ByteArrayInputStream(inputStream.getBytes());
         System.setIn(in);
         packetFilterUtility = new PacketFilterUtility(new Scanner(System.in));
         String filter = packetFilterUtility.createFilter();
@@ -149,7 +203,16 @@ class PacketFilterUtilityTest {
     @Test
     void testCreateFilter_Protocol_NoDir_Port() {
         String input = "n\ry\rtcp\rn\rn\ry\r8010\r";
-        InputStream in = new ByteArrayInputStream(input.getBytes());
+        List<String> inputs = new ArrayList<>();
+        inputs.add("n");
+        inputs.add("y");
+        inputs.add("tcp");
+        inputs.add("n");
+        inputs.add("n");
+        inputs.add("y");
+        inputs.add("8010");
+        String inputStream = String. join("\r", inputs);
+        InputStream in = new ByteArrayInputStream(inputStream.getBytes());
         System.setIn(in);
         packetFilterUtility = new PacketFilterUtility(new Scanner(System.in));
         String filter = packetFilterUtility.createFilter();
@@ -159,8 +222,15 @@ class PacketFilterUtilityTest {
 
     @Test
     void testCreateFilter_NoProtocol_NoDir_Port() {
-        String input = "n\rn\rn\rn\ry\r8010\r";
-        InputStream in = new ByteArrayInputStream(input.getBytes());
+        List<String> inputs = new ArrayList<>();
+        inputs.add("n");
+        inputs.add("n");
+        inputs.add("n");
+        inputs.add("n");
+        inputs.add("y");
+        inputs.add("8010");
+        String inputStream = String. join("\r", inputs);
+        InputStream in = new ByteArrayInputStream(inputStream.getBytes());
         System.setIn(in);
         packetFilterUtility = new PacketFilterUtility(new Scanner(System.in));
         String filter = packetFilterUtility.createFilter();
@@ -170,8 +240,17 @@ class PacketFilterUtilityTest {
 
     @Test
     void testCreateFilter_Protocol_Dir_PortRange() {
-        String input = "n\ry\rtcp\ry\rsrc\rn\ry\r1000-5000\r";
-        InputStream in = new ByteArrayInputStream(input.getBytes());
+        List<String> inputs = new ArrayList<>();
+        inputs.add("n");
+        inputs.add("y");
+        inputs.add("tcp");
+        inputs.add("y");
+        inputs.add("src");
+        inputs.add("n");
+        inputs.add("y");
+        inputs.add("1000-5000");
+        String inputStream = String. join("\r", inputs);
+        InputStream in = new ByteArrayInputStream(inputStream.getBytes());
         System.setIn(in);
         packetFilterUtility = new PacketFilterUtility(new Scanner(System.in));
         String filter = packetFilterUtility.createFilter();
@@ -181,8 +260,16 @@ class PacketFilterUtilityTest {
 
     @Test
     void testCreateFilter_NoProtocol_Dir_PortRange() {
-        String input = "n\rn\ry\rsrc\rn\ry\r1000 -5000\r";
-        InputStream in = new ByteArrayInputStream(input.getBytes());
+        List<String> inputs = new ArrayList<>();
+        inputs.add("n");
+        inputs.add("n");
+        inputs.add("y");
+        inputs.add("src");
+        inputs.add("n");
+        inputs.add("y");
+        inputs.add("1000 -5000");
+        String inputStream = String. join("\r", inputs);
+        InputStream in = new ByteArrayInputStream(inputStream.getBytes());
         System.setIn(in);
         packetFilterUtility = new PacketFilterUtility(new Scanner(System.in));
         String filter = packetFilterUtility.createFilter();
@@ -192,8 +279,16 @@ class PacketFilterUtilityTest {
 
     @Test
     void testCreateFilter_Protocol_NoDir_PortRange() {
-        String input = "n\ry\rtcp\rn\rn\ry\r1000- 5000\r";
-        InputStream in = new ByteArrayInputStream(input.getBytes());
+        List<String> inputs = new ArrayList<>();
+        inputs.add("n");
+        inputs.add("y");
+        inputs.add("tcp");
+        inputs.add("n");
+        inputs.add("n");
+        inputs.add("y");
+        inputs.add("1000- 5000");
+        String inputStream = String. join("\r", inputs);
+        InputStream in = new ByteArrayInputStream(inputStream.getBytes());
         System.setIn(in);
         packetFilterUtility = new PacketFilterUtility(new Scanner(System.in));
         String filter = packetFilterUtility.createFilter();
@@ -203,8 +298,15 @@ class PacketFilterUtilityTest {
 
     @Test
     void testCreateFilter_NoProtocol_NoDir_PortRange() {
-        String input = "n\rn\rn\rn\ry\r1000 - 5000\r";
-        InputStream in = new ByteArrayInputStream(input.getBytes());
+        List<String> inputs = new ArrayList<>();
+        inputs.add("n");
+        inputs.add("n");
+        inputs.add("n");
+        inputs.add("n");
+        inputs.add("y");
+        inputs.add("1000 - 5000");
+        String inputStream = String. join("\r", inputs);
+        InputStream in = new ByteArrayInputStream(inputStream.getBytes());
         System.setIn(in);
         packetFilterUtility = new PacketFilterUtility(new Scanner(System.in));
         String filter = packetFilterUtility.createFilter();
