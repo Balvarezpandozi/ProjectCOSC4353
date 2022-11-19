@@ -15,6 +15,9 @@ public class PcapFileWriterAndReader {
             } catch (NotOpenException e) {
                 e.printStackTrace();
             }
+//            catch (NullPointerException e) {
+//                System.out.println("No packets to write!");
+//            }
         }
 
         dumper.close();

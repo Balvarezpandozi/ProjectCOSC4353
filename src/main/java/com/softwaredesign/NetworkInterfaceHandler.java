@@ -1,6 +1,5 @@
 package com.softwaredesign;
 
-import org.apache.commons.lang3.time.StopWatch;
 import org.pcap4j.core.*;
 import org.pcap4j.core.PcapNetworkInterface.PromiscuousMode;
 import org.pcap4j.packet.Packet;
@@ -9,8 +8,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
-import static java.lang.Thread.sleep;
 
 public class NetworkInterfaceHandler {
     private ArrayList<Packet> packets;
@@ -55,29 +52,32 @@ public class NetworkInterfaceHandler {
      * @param maxPackets: Maximum amount of packets to capture from the network interface
      * @throws PcapNativeException
      */
-    public PcapHandle listenForPacketsOnDevice(PcapNetworkInterface device, int snapshotLength, int readTimeout, int maxPackets) throws PcapNativeException, NotOpenException {
+    public PcapHandle listenForPacketsOnDevice(PcapNetworkInterface device, int snapshotLength, int readTimeout, int maxPackets) throws PcapNativeException {
         final PcapHandle handle = device.openLive(snapshotLength, PromiscuousMode.PROMISCUOUS, readTimeout);
         packets = new ArrayList<>();
+        long currTime = System.currentTimeMillis();
 
         PacketListener listener = packet -> {
+            if (System.currentTimeMillis() - currTime >= readTimeout) {
+                try {
+                    handle.breakLoop();
+                } catch (NotOpenException e) {
+                    throw new RuntimeException(e);
+                }
+            }
             packets.add(packet);
-
-            System.out.println("=====================================");
-            System.out.println("isPacketIPv4: " + IPaddress4or6.isPacketUsingIPv4(packet));
-            System.out.println("isPacketIPv6: " + IPaddress4or6.isPacketUsingIPv6(packet));
-            System.out.println(packet);
-            System.out.println("=====================================");
+            if (packets.size()%10 == 0) {
+                System.out.println("Packets gotten so far: " + packets.size());
+            }
         };
 
-        Thread packetLoop = new Thread(() -> {
-            try {
-                handle.loop(maxPackets, listener);
-            } catch (Exception e) {
-                System.out.println(e.getClass());
-            }
-        });
 
-        packetLoop.start();
+
+        try {
+            handle.loop(maxPackets, listener);
+        } catch (Exception e) {
+
+        }
 
         return handle;
     }
@@ -105,6 +105,11 @@ public class NetworkInterfaceHandler {
         return listenForPacketsOnDevice(device, snapshotLength, readTimeout, maxPackets);
     }
 
+    public PcapHandle listenForPacketsOnDevice(PcapNetworkInterface device, int maxPackets, int readTimeout) throws PcapNativeException, NotOpenException {
+        int snapshotLength = 65536; // in bytes
+        return listenForPacketsOnDevice(device, snapshotLength, readTimeout, maxPackets);
+    }
+
     /**
      * @return all packets as an ArrayList
      */
@@ -112,15 +117,18 @@ public class NetworkInterfaceHandler {
         return packets;
     }
 
-    public void sniff(int deviceIndex, int timeLimit) throws IOException, PcapNativeException, NotOpenException, InterruptedException {
-        PcapNetworkInterface device = getAllDevices().get(deviceIndex);
-        StopWatch stopwatch = new StopWatch();
-        stopwatch.start();
-        PcapHandle handle = listenForPacketsOnDevice(device,timeLimit);
-        sleep(timeLimit);
-        handle.breakLoop();
-        handle.close();
-        stopwatch.stop();
-        System.out.println("Time Elapsed: " + stopwatch.getTime());
+    public PcapHandle sniff(int deviceIndex, int timeLimit) throws IOException, PcapNativeException, NotOpenException, InterruptedException {
+        PcapHandle handle = null;
+        List<PcapNetworkInterface> devices = getAllDevices();
+        if (devices.size() > deviceIndex) {
+            PcapNetworkInterface device = devices.get(deviceIndex);
+            handle = listenForPacketsOnDevice(device,timeLimit);
+            handle.breakLoop();
+            handle.close();
+        } else {
+            System.out.println("That device does not exist!");
+        }
+
+        return handle;
     }
 }
