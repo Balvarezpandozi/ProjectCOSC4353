@@ -1,5 +1,6 @@
 package com.softwaredesign;
 
+import com.softwaredesign.filter.PacketFilterUtility;
 import org.pcap4j.core.*;
 import org.pcap4j.packet.Packet;
 import org.pcap4j.util.LinkLayerAddress;
@@ -29,7 +30,7 @@ public class Main {
         Pattern exitRegex = Pattern.compile("exit", Pattern.CASE_INSENSITIVE);
         Pattern getPacketsRegex = Pattern.compile("-n show packets", Pattern.CASE_INSENSITIVE);
         Pattern readPacketsFromFileRegex = Pattern.compile("read -p [0-9a-z]+\\.pcap", Pattern.CASE_INSENSITIVE); //[0-9a-z]* -> file name
-        Pattern filterPacketsRegex = Pattern.compile("filter [a-z]*", Pattern.CASE_INSENSITIVE); //[a-z]* -> filter type
+        Pattern filterPacketsRegex = Pattern.compile("-n listen -f (-w )?[0-9]+ [0-9]+", Pattern.CASE_INSENSITIVE);//[0-9]* -> amount of time in seconds, [0-9]* -> device index
         Pattern pingRegex = Pattern.compile("-h ping", Pattern.CASE_INSENSITIVE);
         Pattern getNetworkDevicesRegex = Pattern.compile("-n get -s local", Pattern.CASE_INSENSITIVE);
 
@@ -113,7 +114,20 @@ public class Main {
                 readPacketsFromFile(fileName);
 
             } else if (input.matches(filterPacketsRegex.pattern())) {
-                // filter -p FILTER TYPE(string)\
+                //-n listen -f TIME(seconds) DEVICE INDEX(int)
+                //Get arguments
+                String[] numbers = getNumbersFromString(input);
+
+                //Parse arguments
+                String seconds = numbers[0];
+                int parsedSeconds = Integer.parseInt(seconds);
+                String index = numbers[1];
+                int parsedDeviceIndex = Integer.parseInt(index);
+                Boolean write = false;
+                if (input.contains(" -w ")) write = true;
+                PacketFilterUtility filterUtility = new PacketFilterUtility(new Scanner(System.in));
+                String bpf_filter = filterUtility.createFilter();
+                listenFilteredPackets(parsedSeconds, parsedDeviceIndex, bpf_filter, write);
 
             } else if (input.matches(pingRegex.pattern())) {
                 //Ping host to get IP and MAC addresses
@@ -171,13 +185,7 @@ public class Main {
         System.out.println("Listening for " + seconds + " seconds. Wait...");
         try {
             handle = networkInterfaceHandler.sniff(deviceIndex, milliseconds);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (PcapNativeException e) {
-            throw new RuntimeException(e);
-        } catch (NotOpenException e) {
-            throw new RuntimeException(e);
-        } catch (InterruptedException e) {
+        } catch (IOException | InterruptedException | PcapNativeException | NotOpenException e) {
             throw new RuntimeException(e);
         }
         System.out.println("Done listening!");
@@ -205,6 +213,31 @@ public class Main {
         }
         while (networkInterfaceHandler.getPackets().size() < amountOfPackets) {
             sleep(1000);
+        }
+
+        System.out.println("Done listening!");
+
+        if (write) writePacketsToFile(handle);
+
+        handle.close();
+
+    }
+
+    private static void listenFilteredPackets(int seconds, int deviceIndex, String bpf_filter, Boolean write){
+        int milliseconds = seconds * 1000;
+        PcapHandle handle = null;
+        System.out.println("Listening for " + seconds + " seconds. Wait...");
+
+        try {
+            List<PcapNetworkInterface> devices = networkInterfaceHandler.getAllDevices();
+            if (devices.size() <= deviceIndex) {
+                System.out.println("Device #" + deviceIndex + " does not exist!");
+                return;
+            }
+            System.out.println("Listening for packets. Wait...");
+            handle = networkInterfaceHandler.listenForFilteredPacketsOnDevice(devices.get(deviceIndex),milliseconds, bpf_filter);
+        } catch (IOException | NotOpenException | PcapNativeException e) {
+            throw new RuntimeException(e);
         }
 
         System.out.println("Done listening!");

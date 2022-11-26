@@ -43,6 +43,36 @@ public class NetworkInterfaceHandler {
         return allDevices;
     }
 
+    public PcapHandle listenForFilteredPacketsOnDevice(PcapNetworkInterface device, int snapshotLength, int readTimeout, int maxPackets, String bpf_filter) throws PcapNativeException, NotOpenException {
+        final PcapHandle handle = device.openLive(snapshotLength, PromiscuousMode.PROMISCUOUS, readTimeout);
+        packets = new ArrayList<>();
+        handle.setFilter(bpf_filter, BpfProgram.BpfCompileMode.OPTIMIZE);
+        long currTime = System.currentTimeMillis();
+
+        PacketListener listener = packet -> {
+            if (System.currentTimeMillis() - currTime >= readTimeout) {
+                try {
+                    handle.breakLoop();
+                } catch (NotOpenException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            packets.add(packet);
+            if (packets.size()%10 == 0) {
+                System.out.println("Packets gotten so far: " + packets.size());
+            }
+        };
+
+
+        try {
+            handle.loop(maxPackets, listener);
+        } catch (Exception e) {
+
+        }
+
+        return handle;
+    }
+
     /**
      * listenForPacketsOnDevice creates a packet listener on the given network device and saves all packets on the class
      * packets list. It also initializes the packets list every ime it runs.
@@ -83,15 +113,18 @@ public class NetworkInterfaceHandler {
     }
 
     /**
-     * This function allows overloading for the previous listenForPacketsOnDevice function. Sets up default parameters.
+     * This function allows overloading for the previous listenForFilteredPacketsOnDevice function. Sets up default parameters.
      * @param device
+     * @param readTimeout
+     * @param bpf_filter
+     * @return
      * @throws PcapNativeException
+     * @throws NotOpenException
      */
-    public PcapHandle listenForPacketsOnDevice(PcapNetworkInterface device) throws PcapNativeException, NotOpenException {
+    public PcapHandle listenForFilteredPacketsOnDevice(PcapNetworkInterface device, int readTimeout, String bpf_filter) throws PcapNativeException, NotOpenException {
         int snapshotLength = 65536; // in bytes
-        int readTimeout = 50; // in milliseconds
-        int maxPackets = 50;
-        return listenForPacketsOnDevice(device, snapshotLength, readTimeout, maxPackets);
+        int maxPackets = INFINITY;
+        return listenForFilteredPacketsOnDevice(device, snapshotLength, readTimeout, maxPackets, bpf_filter);
     }
 
     /**
