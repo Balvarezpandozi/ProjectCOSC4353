@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
+
+import static com.softwaredesign.PatternConstants.*;
 import static java.lang.Thread.sleep;
 
 
@@ -23,39 +25,11 @@ public class Main {
 
     public static void main(String[] args) {
 
-        //COMMANDS
-        Pattern listenByTimeRegex = Pattern.compile("-n listen -t (-w )?[0-9]+ [0-9]+", Pattern.CASE_INSENSITIVE); //[0-9]* -> amount of time in seconds, , [0-9]* -> device index
-        Pattern listenByAmountOfPacketsRegex = Pattern.compile("-n listen -p (-w )?[0-9]+ [0-9]+", Pattern.CASE_INSENSITIVE); //[0-9]* -> amount of packets, [0-9]* -> device index
-        Pattern helpRegex = Pattern.compile("help", Pattern.CASE_INSENSITIVE);
-        Pattern exitRegex = Pattern.compile("exit", Pattern.CASE_INSENSITIVE);
-        Pattern getPacketsRegex = Pattern.compile("-n show packets", Pattern.CASE_INSENSITIVE);
-        Pattern readPacketsFromFileRegex = Pattern.compile("read -p [0-9a-z]+\\.pcap", Pattern.CASE_INSENSITIVE); //[0-9a-z]* -> file name
-        Pattern filterPacketsRegex = Pattern.compile("-n listen -f (-w )?[0-9]+ [0-9]+", Pattern.CASE_INSENSITIVE);//[0-9]* -> amount of time in seconds, [0-9]* -> device index
-        Pattern pingRegex = Pattern.compile("-h ping", Pattern.CASE_INSENSITIVE);
-        Pattern getNetworkDevicesRegex = Pattern.compile("-n get -s local", Pattern.CASE_INSENSITIVE);
-
-        String dir = System.getProperty("user.dir") + "\\src\\main\\java\\com\\softwaredesign\\";
-        File welcomeFile = new File(dir + "WelcomeFile.txt");
         StringBuilder welcome = new StringBuilder();
-        File helpFile = new File(dir + "HelpFile.txt");
         StringBuilder help = new StringBuilder();
 
-        try{
-            Scanner fileReader = new Scanner(welcomeFile);
-            while(fileReader.hasNextLine()){
-                welcome.append(fileReader.nextLine()).append("\n");
-            }
-            fileReader.close();
-            fileReader = new Scanner(helpFile);
-            while(fileReader.hasNextLine()){
-                help.append(fileReader.nextLine()).append("\n");
-            }
-            fileReader.close();
-        }catch(FileNotFoundException e){
-            System.out.println("Welcome message was not found!");
-            e.printStackTrace();
-            System.exit(0);
-        }
+        readWelcomeFile(welcome);
+        readHelpFile(help);
 
         System.out.println(welcome);
         System.out.print("Type the command you want to execute: ");
@@ -143,6 +117,38 @@ public class Main {
 
         System.out.println("See you later!");
 
+    }
+
+    private static void readWelcomeFile(StringBuilder welcome) {
+        String dir = System.getProperty("user.dir") + "\\src\\main\\java\\com\\softwaredesign\\";
+        File welcomeFile = new File(dir + "WelcomeFile.txt");
+        try{
+            Scanner fileReader = new Scanner(welcomeFile);
+            while(fileReader.hasNextLine()){
+                welcome.append(fileReader.nextLine()).append("\n");
+            }
+            fileReader.close();
+        }catch(FileNotFoundException e){
+            System.out.println("Welcome message was not found!");
+            e.printStackTrace();
+            System.exit(0);
+        }
+    }
+
+    private static void readHelpFile(StringBuilder help) {
+        String dir = System.getProperty("user.dir") + "\\src\\main\\java\\com\\softwaredesign\\";
+        File helpFile = new File(dir + "HelpFile.txt");
+        try{
+            Scanner fileReader = new Scanner(helpFile);
+            while(fileReader.hasNextLine()){
+                help.append(fileReader.nextLine()).append("\n");
+            }
+            fileReader.close();
+        }catch(FileNotFoundException e){
+            System.out.println("Help file was not found!");
+            e.printStackTrace();
+            System.exit(0);
+        }
     }
 
     static void getNetworkDevices() {
