@@ -61,7 +61,6 @@ You will extract the core functional and non-functional requirements, and protot
 - Task15: Determine next commands to add.
 #### WIP (Task name, team member(s) working on it) 
 - Task12: add getting network interfaces connected to a certain network, Diogo and Bryan
-- Task16: Integrate filtering packets in main class, Atharva
 #### Tasks Done
 - Created repository
 - Added ReadMe file
@@ -78,6 +77,7 @@ You will extract the core functional and non-functional requirements, and protot
 - Task2: Create command line class to handle user input, Diogo
 - Task10: Add junit tests, Atharva
 - Task13: add filtering of packets by protocol, Atharva
+- Task16: Integrate filtering packets in main class, Atharva
 ### Running Instructions:
 
 ### File Structure:
