@@ -26,6 +26,9 @@ help command accessed:
             ->  "-p filter"
                 Filters packet information based on PCAP file that can be read from.
 
+->  "read -p [FILENAME.pcap]"
+    Reads the packets from given filename and prints to the console.
+
 ->  "exit"
     Exits the program.
 
