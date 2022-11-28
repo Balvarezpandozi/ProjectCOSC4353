@@ -4,13 +4,15 @@ help command accessed:
 -> "-n get -s local" 
 	Outputs a numerated list of all network interfaces from local device where this program is running on.
 
-->  "-n listen [FLAG: -p OR -t] [OPTIONAL_FLAG: -w] [MAX_AMOUNT_OF_PACKETS or MAX_AMOUNT_OF_TIME] [NETWORK_INTERFACE_NUMBER]"
+->  "-n listen [FLAG: -p OR -t OR -f] [OPTIONAL_FLAG: -w] [MAX_AMOUNT_OF_PACKETS or MAX_AMOUNT_OF_TIME] [NETWORK_INTERFACE_NUMBER]"
 	Listens for packets on the given network.
 	Flags "-p" and "-t" are required only one per command.
 	>   "-p" will listen to packets until it reaches the max amount of packets given.
 	    Ex: ""-n listen -p 320 1", where 320 is the max amount of packets and 1 is the given network interface.
 	>   "-t" will listen to packets until it reaches the max amount of time given.
 	    Ex: "-n listen -t 320 1", where 320 is the max amount of time in SECONDS and 1 is the given network interface.
+	>   "-f" will filter packets until it reaches the max amount of time given.
+	    Ex: "-n listen -f 10 1", where 10 is the max amount of time in SECONDS and 1 is the given network interface.
 	>   "-w" will prompt to give a file name after retrieving packets to write them to a pcap file inside the project folder
 
 ->  "-n show packets"

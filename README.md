@@ -52,6 +52,7 @@ You will extract the core functional and non-functional requirements, and protot
 - Task12: add getting network interfaces connected to a certain network, Diogo and Bryan
 - Task14: Add support for filtering packets
 #### Sprint 6: Nov 2, 2022 - Nov 16, 2022
+- Task16: Integrate filtering packets in main class
 #### Project Presentation: Nov 28, 2022
 
 
@@ -60,7 +61,7 @@ You will extract the core functional and non-functional requirements, and protot
 - Task15: Determine next commands to add.
 #### WIP (Task name, team member(s) working on it) 
 - Task12: add getting network interfaces connected to a certain network, Diogo and Bryan
-- Task13: add filtering of packets by protocol, Atharva
+- Task16: Integrate filtering packets in main class, Atharva
 #### Tasks Done
 - Created repository
 - Added ReadMe file
@@ -76,6 +77,7 @@ You will extract the core functional and non-functional requirements, and protot
 - Task11: Set up general test class to implement samples and calling all tests in one class, Bryan
 - Task2: Create command line class to handle user input, Diogo
 - Task10: Add junit tests, Atharva
+- Task13: add filtering of packets by protocol, Atharva
 ### Running Instructions:
 
 ### File Structure:
